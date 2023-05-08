@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <p>Long Poll</p>
+        <p id="poll"></p>
+    </body>
+    <script>
+        const poll = document.getElementById('poll')
+        const worker = async function () {
+            fetch('http://localhost:3000')
+                .then(async (response) => {
+                    poll.textContent = await response.text()
+                    worker()
+                })
+                .catch((e) => (poll.textContent = `Error: ${e.message}. Refresh page to retry.`))
+        }
+        worker()
+    </script>
+</html>
