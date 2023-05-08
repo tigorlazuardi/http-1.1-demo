@@ -18,7 +18,7 @@
                     poll.textContent = await response.text()
                     worker()
                 })
-                .catch((e) => (poll.textContent = `Error: ${e.message}. Refresh page to retry.`))
+                .catch((e) => (poll.textContent = `Error: ${e.message} Refresh page to retry.`))
         }
         worker()
     </script>
