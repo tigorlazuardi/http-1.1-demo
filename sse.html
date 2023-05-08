@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <p>Server Sent Events</p>
+    <p id="sse"></p>
+  </body>
+  <script>
+    const source = new EventSource('http://localhost:3000')
+
+    source.addEventListener('message', (e) => {
+      document.getElementById('sse').innerText = e.data
+    })
+  </script>
+</html>

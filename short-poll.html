@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <p>Short Poll</p>
+    <p id="poll"></p>
+  </body>
+  <script>
+    let interval = setInterval(async function () {
+      const poll = document.getElementById('poll')
+      try {
+        const response = await fetch('http://localhost:3000')
+        const data = await response.text()
+        poll.textContent = data
+        if (response.status === 200) {
+          clearInterval(interval)
+        }
+      } catch (e) {
+        poll.textContent = `Error: ${e.message}. Refresh page to retry.`
+      }
+    }, 1000)
+  </script>
+</html>
